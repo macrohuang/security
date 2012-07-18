@@ -15,7 +15,7 @@
           </list> 
       </property>
     </bean>
-	<bean id="permissionCheck" class="com.sogou.bizdev.security.service.impl.PermissionCheckImpl" autowire="byName">
+	<bean id="permissionCheck" class="github.macrohuang.security.service.impl.PermissionCheckImpl" autowire="byName">
 		<property name="hibernateTemplate" ref="permissionHibernateTemplate"></property>
 	</bean>
 	<bean id="permissionHibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
@@ -67,5 +67,5 @@
 			<value>${security.datasource.maxIdleTime}</value>
 		</property>
 	</bean>
-		<bean id="securityJmxAgent" class="com.sogou.bizdev.security.jmx.SecurityJmxAgent" autowire="byName"/>
+		<bean id="securityJmxAgent" class="github.macrohuang.security.jmx.SecurityJmxAgent" autowire="byName"/>
 </beans>

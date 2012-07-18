@@ -1,10 +1,11 @@
-package com.sogou.bizdev.security.launcher;
+package github.macrohuang.security.launcher;
+
+import github.macrohuang.security.service.PermissionCheck;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.sogou.bizdev.platform.service.ServiceLocator;
-import com.sogou.bizdev.security.service.PermissionCheck;
+import github.macrohuang.platform.service.ServiceLocator;
 
 public class ApplicationLauncher {
 

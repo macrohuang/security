@@ -1,4 +1,11 @@
-package com.sogou.bizdev.security.service;
+package github.macrohuang.security.service;
+
+import github.macrohuang.security.constants.PermissionConstants;
+import github.macrohuang.security.po.AccountRoleMap;
+import github.macrohuang.security.po.Resource;
+import github.macrohuang.security.po.Role;
+import github.macrohuang.security.po.RoleResourceMap;
+import github.macrohuang.security.service.PermissionCheck;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,13 +22,8 @@ import org.junit.Test;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.sogou.bizdev.security.base.BaseTest;
-import com.sogou.bizdev.security.constants.PermissionConstants;
-import com.sogou.bizdev.security.po.AccountRoleMap;
-import com.sogou.bizdev.security.po.Resource;
-import com.sogou.bizdev.security.po.Role;
-import com.sogou.bizdev.security.po.RoleResourceMap;
-import com.sogou.bizdev.utils.cache.MyCacheUtils;
+import github.macrohuang.security.base.BaseTest;
+import github.macrohuang.utils.cache.MyCacheUtils;
 
 public class PermissionServiceTest extends BaseTest {
 	final String s = "unit-test";
