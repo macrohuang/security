@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<import resource="classpath:appContext-bizdev-security.xml" />
+
+<!-- 建议用户自己配置，这样可以使得拦截范围限定在自己定义的资源范围内 -->
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" /> -->
+	<bean id="permissionCheckAspectBean"
+		class="com.sogou.bizdev.security.interceptor.PermissiohCheckAspect"
+		autowire="autodetect" />
+	<aop:config>
+		<aop:aspect id="permissionCheckAspect" ref="permissionCheckAspectBean"
+			order="4">
+			<aop:pointcut id="permissionCheckPointcut" expression="execution(* com.sogou..*Service*.*(..))"/>
+			<aop:before pointcut-ref="permissionCheckPointcut" method="checkPermissionBefore" />
+		</aop:aspect>
+	</aop:config>
+</beans>

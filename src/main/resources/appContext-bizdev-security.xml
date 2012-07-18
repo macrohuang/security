@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+      <property name="order" value="1" />  
+      <property name="ignoreUnresolvablePlaceholders" value="true" />
+      <property name="locations"> 
+          <list> 
+              <value>classpath:security-db-config.properties</value>
+          </list> 
+      </property>
+    </bean>
+	<bean id="permissionCheck" class="com.sogou.bizdev.security.service.impl.PermissionCheckImpl" autowire="byName">
+		<property name="hibernateTemplate" ref="permissionHibernateTemplate"></property>
+	</bean>
+	<bean id="permissionHibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="permissionSessionFactory" />
+	</bean>
+	<bean id="permissionSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="permissionDataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>com/sogou/bizdev/security/mapping/AccountRoleMap.hbm.xml</value>
+				<value>com/sogou/bizdev/security/mapping/Resource.hbm.xml</value>
+				<value>com/sogou/bizdev/security/mapping/Role.hbm.xml</value>
+				<value>com/sogou/bizdev/security/mapping/RoleResourceMap.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${security.hibernate.dialect}</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+				<prop key="hibernate.show_sql">${security.hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${security.hibernate.format_sql}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="permissionDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
+		<property name="driverClass">
+			<value>${security.datasource.driverClass}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${security.datasource.jdbcUrl}</value>
+		</property>
+		<property name="user">
+			<value>${security.datasource.user}</value>
+		</property>
+		<property name="password">
+			<value>${security.datasource.password}</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>${security.datasource.maxPoolSize}</value>
+		</property>
+		<property name="minPoolSize">
+			<value>${security.datasource.minPoolSize}</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>${security.datasource.idleConnectionTestPeriod}</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>${security.datasource.maxIdleTime}</value>
+		</property>
+	</bean>
+		<bean id="securityJmxAgent" class="com.sogou.bizdev.security.jmx.SecurityJmxAgent" autowire="byName"/>
+</beans>
