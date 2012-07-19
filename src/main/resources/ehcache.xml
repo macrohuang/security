@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ehcache name="security_ehcache">
+  <defaultCache
+      maxElementsInMemory="10000"
+      eternal="false"
+      timeToIdleSeconds="120"
+      timeToLiveSeconds="120"
+      overflowToDisk="true"
+      diskSpoolBufferSizeMB="128"
+      maxElementsOnDisk="10000000"
+      diskPersistent="false"
+      diskExpiryThreadIntervalSeconds="120"
+      memoryStoreEvictionPolicy="LRU"/>
+  <cache name="security"
+         maxElementsInMemory="1000"
+         maxElementsOnDisk="100"
+         eternal="false"
+         timeToIdleSeconds="1200"
+         timeToLiveSeconds="1200"
+         memoryStoreEvictionPolicy="LFU">
+    <terracotta concurrency="5"/>
+  </cache>
+  <terracottaConfig url="somedomain1:port,somedomain2:port,somedomain3:port"/>
+</ehcache>
