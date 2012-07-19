@@ -3,6 +3,7 @@ package github.macrohuang.security.service.impl;
 import github.macrohuang.security.constants.PermissionConstants;
 import github.macrohuang.security.po.Resource;
 import github.macrohuang.security.po.Role;
+import github.macrohuang.security.util.MyCacheUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,8 +13,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
-
-import github.macrohuang.utils.cache.MyCacheUtils;
 
 public final class PermissionServiceLoader {
 	private static final Map<Long, List<String>> userRoleMap = new HashMap<Long, List<String>>();

@@ -7,6 +7,7 @@ import github.macrohuang.security.po.Role;
 import github.macrohuang.security.po.RoleResourceMap;
 import github.macrohuang.security.service.PermissionCheck;
 import github.macrohuang.security.service.impl.PermissionServiceLoader.CheckStatus;
+import github.macrohuang.security.util.MyCacheUtils;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,8 +23,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
-
-import github.macrohuang.utils.cache.MyCacheUtils;
 
 public class PermissionCheckImpl implements PermissionCheck {
 	private HibernateTemplate hibernateTemplate;

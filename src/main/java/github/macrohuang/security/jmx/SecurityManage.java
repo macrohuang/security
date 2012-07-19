@@ -2,6 +2,7 @@ package github.macrohuang.security.jmx;
 
 import github.macrohuang.security.po.Resource;
 import github.macrohuang.security.service.PermissionCheck;
+import github.macrohuang.security.util.ServiceLocator;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -10,8 +11,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
-
-import github.macrohuang.platform.service.ServiceLocator;
 
 public class SecurityManage implements SecurityManageMBean {
 	private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(SecurityManage.class);

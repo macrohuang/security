@@ -3,8 +3,6 @@ package github.macrohuang.security.jmx;
 import java.util.HashMap;
 import java.util.Map;
 
-import github.macrohuang.platform.jmx.JmxAgent;
-
 public class SecurityJmxAgent extends JmxAgent {
 
 	@Override

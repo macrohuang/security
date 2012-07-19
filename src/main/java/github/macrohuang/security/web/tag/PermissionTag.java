@@ -1,6 +1,7 @@
 package github.macrohuang.security.web.tag;
 
 import github.macrohuang.security.service.PermissionCheck;
+import github.macrohuang.security.util.ServiceLocator;
 
 import java.io.IOException;
 
@@ -9,8 +10,6 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyTag;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.Tag;
-
-import github.macrohuang.platform.service.ServiceLocator;
 
 public class PermissionTag extends BodyTagSupport {
 	private Long accountId;
